@@ -33,9 +33,12 @@ This contract introduces a new `DerivativeNft` struct field in the Metadata exte
 ```
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
 pub struct DerivativeNft {
-    pub method: String, // The name of the algorithm used to generate a derivative NFT. Currently it can only be 'styletransfer'
-    pub params: Option<String>, // Parameters of the generation (e.g. stylization intensity, neural network model used, etc. )
-    pub source_ids: Vec<String>, // A vector of input NFTs fed into the algorithm
+    // The name of the algorithm used to generate a derivative NFT. Currently it can only be 'styletransfer'
+    pub method: String, 
+    // Parameters of the generation (e.g. stylization intensity, neural network model used, etc. )
+    pub params: Option<String>, 
+    // A vector of input NFTs fed into the algorithm
+    pub source_ids: Vec<String>, 
 }
 
 // see: https://docs.opensea.io/docs/metadata-standards
@@ -79,5 +82,28 @@ Sample metadata:
         }
     }
 }
+```
+
+To access extension data a new trait was introduced:
+
+```
+pub trait MetaAccess {
+    fn is_derivative(&self) -> bool;
+    fn get_metadata(&self) -> &Metadata;
+}
+
+impl MetaAccess for Extension {
+    fn is_derivative(&self) -> bool {
+        if self.is_some() {
+            self.as_ref().unwrap().derivative.is_some()
+        } else {
+            false
+        }
+    }
+    fn get_metadata(&self) -> &Metadata {
+        self.as_ref().unwrap()
+    }
+}
+
 ```
 
