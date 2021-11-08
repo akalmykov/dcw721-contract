@@ -21,7 +21,7 @@ To build a wasm and optimize it for deployment run:
 cargo wasm
 cargo run-script optimize
 ```
-# Build
+# Deploy
 
 For step-by-step deployment instructions see [the dApp repository](https://github.com/akalmykov/dcw721-dapp/).
 
