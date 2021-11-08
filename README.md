@@ -1,8 +1,35 @@
-# cw721 with metadata extension (CosmWasm-std 1.6 compatible)
+# dNFT: a smart contract for derivative NFTS
 
 This is modified cw721 template that allows minting, storing and acessing derivative NFTS.
 
+This contract introduces 
 
+```
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
+pub struct DerivativeNft {
+    pub method: String,
+    pub params: Option<String>,
+    pub source_ids: Vec<String>,
+}
+
+// see: https://docs.opensea.io/docs/metadata-standards
+#[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
+pub struct Metadata {
+    pub image: Option<String>,
+    pub image_data: Option<String>,
+    pub external_url: Option<String>,
+    pub description: Option<String>,
+    pub name: Option<String>,
+    pub attributes: Option<Vec<Trait>>,
+    pub background_color: Option<String>,
+    pub animation_url: Option<String>,
+    pub youtube_url: Option<String>,
+    pub derivative: Option<DerivativeNft>,
+}
+
+```
+
+Sample metadata:
 ```
 {
     "token_uri": null,
