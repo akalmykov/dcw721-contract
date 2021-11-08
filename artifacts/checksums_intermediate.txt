@@ -1,0 +1,1 @@
+bd94663fd1042712a95d48da78711c13adf4a7ec4e0d43b4a276cebf3fd3d67d  ./target/wasm32-unknown-unknown/release/cw721terra.wasm
