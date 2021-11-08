@@ -84,7 +84,7 @@ Sample metadata:
 }
 ```
 
-To access extension data a new trait was introduced:
+To access extension data a `MetaAccess` trait was added introduced:
 
 ```rust
 pub trait MetaAccess {
@@ -114,6 +114,6 @@ There are two kinds of NFTs that can be minted by this contract:
 - derivative NFTs
 
 "Original" NFTs can be minted only by `minter` specified during contract's initizalization in `InstantiateMsg`.
-Derivative NFTs can be minted by any NFT owner if they own all NFTs listed in `DerivativeNft.source_ids`.
+Derivative NFTs can be minted by any NFT owner if they own all NFTs listed in `DerivativeNft.source_ids`. Upon receiving `mint` message the contract checks this that this condition is fulfilled. 
 
 
