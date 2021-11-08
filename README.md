@@ -6,7 +6,7 @@ This contract is a part of [DeFi & Cross-chain Interoperability Hackathon](https
 - [a cw721 contract with metadata extension](https://github.com/akalmykov/dcw721-contract/), this repository
 - [front-end dApp](https://github.com/akalmykov/dcw721-dapp/)
 
-This is modified cw721 template that allows minting, storing and acessing derivative NFTS.
+This cw721-compatible contract that allows minting, storing and acessing derivative NFTs.
 
 
 # Build
