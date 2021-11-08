@@ -26,16 +26,16 @@ cargo run-script optimize
 For step-by-step deployment instructions see [the dApp repository](https://github.com/akalmykov/dcw721-dapp/).
 
 # Implementation details
-## Storage
+## On-chain storage of derivative NFTs
 
-This contract introduces 
+This contract introduces a new `DerivativeNft` struct field in the Metadata extension. It stores the method used to derive a new NFT, parameters and an ordered list input NFTs used to generate a derivative NFT.
 
 ```
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
 pub struct DerivativeNft {
-    pub method: String,
-    pub params: Option<String>,
-    pub source_ids: Vec<String>,
+    pub method: String, // The name of the algorithm used to generate a derivative NFT. Currently it can only be 'styletransfer'
+    pub params: Option<String>, // Parameters of the generation (e.g. stylization intensity, neural network model used, etc. )
+    pub source_ids: Vec<String>, // A vector of input NFTs fed into the algorithm
 }
 
 // see: https://docs.opensea.io/docs/metadata-standards
