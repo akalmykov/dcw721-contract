@@ -30,14 +30,14 @@ For step-by-step deployment instructions see [the dApp repository](https://githu
 
 This contract introduces a new `DerivativeNft` struct field in the Metadata extension. It stores the method used to derive a new NFT, parameters and an ordered list input NFTs used to generate a derivative NFT.
 
-```
+```rust
 #[derive(Serialize, Deserialize, Clone, PartialEq, JsonSchema, Debug, Default)]
 pub struct DerivativeNft {
     // The name of the algorithm used to generate a derivative NFT. Currently it can only be 'styletransfer'
     pub method: String, 
     // Parameters of the generation (e.g. stylization intensity, neural network model used, etc. )
     pub params: Option<String>, 
-    // A vector of input NFTs fed into the algorithm
+    // A list of tokein_id of input NFTs fed into the algorithm
     pub source_ids: Vec<String>, 
 }
 
@@ -59,7 +59,7 @@ pub struct Metadata {
 ```
 
 Sample metadata:
-```
+```rust
 {
     "token_uri": null,
     "extension": {
@@ -86,7 +86,7 @@ Sample metadata:
 
 To access extension data a new trait was introduced:
 
-```
+```rust
 pub trait MetaAccess {
     fn is_derivative(&self) -> bool;
     fn get_metadata(&self) -> &Metadata;
@@ -106,4 +106,14 @@ impl MetaAccess for Extension {
 }
 
 ```
+## Minting NFTs
+
+There are two kinds of NFTs that can be minted by this contract:
+
+- "original" NFTs
+- derivative NFTs
+
+"Original" NFTs can be minted only by `minter` specified during contract's initizalization in `InstantiateMsg`.
+Derivative NFTs can be minted by any NFT owner if they own all NFTs
+
 
