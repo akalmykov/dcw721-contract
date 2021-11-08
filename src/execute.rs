@@ -97,8 +97,6 @@ where
                 if meta.derivative.is_some() {
                     for token_id in meta.derivative.as_ref().unwrap().source_ids.iter() {
                         let token_info = self.tokens.load(deps.storage, &token_id)?;
-                        // println!("owner: {}", token_info.owner.to_string());
-                        // println!("sender: {}", info.sender.to_string());
                         if token_info.owner != info.sender {
                             return Err(ContractError::Unauthorized {});
                         }
@@ -109,9 +107,6 @@ where
             }
         };
     
-
-        
-        
 
         // create the token
         let token = TokenInfo {
