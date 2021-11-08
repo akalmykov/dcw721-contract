@@ -1,6 +1,32 @@
 # dNFT: a smart contract for derivative NFTS
 
+
+This contract is a part of [DeFi & Cross-chain Interoperability Hackathon](https://gitcoin.co/issue/terra-money/bounties/2/100026890) submission that consists of two parts:
+
+- [a cw721 contract with metadata extension](https://github.com/akalmykov/dcw721-contract/), this repository
+- [front-end dApp](https://github.com/akalmykov/dcw721-dapp/)
+
 This is modified cw721 template that allows minting, storing and acessing derivative NFTS.
+
+
+# Build
+
+Install cargo-generate and cargo-run-script. Unless you did that before, run this line now:
+
+`cargo install cargo-generate cargo-run-script --features vendored-openssl `
+
+To build a wasm and optimize it for deployment run:
+
+```
+cargo wasm
+cargo run-script optimize
+```
+# Build
+
+For step-by-step deployment instructions see [the dApp repository](https://github.com/akalmykov/dcw721-dapp/).
+
+# Implementation details
+## Storage
 
 This contract introduces 
 
@@ -53,17 +79,5 @@ Sample metadata:
         }
     }
 }
-```
-# Build
-
-Install cargo-generate and cargo-run-script. Unless you did that before, run this line now:
-
-`cargo install cargo-generate cargo-run-script --features vendored-openssl `
-
-To build a wasm and optimize it for deployment run
-
-```
-cargo wasm
-cargo run-script optimize
 ```
 
